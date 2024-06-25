@@ -1,10 +1,11 @@
 /**
- * This module creates the application instance.
+ * This module creates the instance of the application.
  * The actual server logic is contained within the server.ts file.
  */
 import express, { NextFunction, Request, Response } from "express";
 import logger from "./config/logger";
 import { HttpError } from "http-errors";
+import authRouter from "./routes/auth";
 
 const app = express();
 
@@ -19,6 +20,8 @@ app.get("/", async (req, res) => {
      */
     res.status(200).send("Hey, welcome to Feast Finder's Auth Service!");
 });
+
+app.use("/auth", authRouter); // added "/auth" prefix for the authRouter routes
 
 /**
  * Global error handler middleware.
@@ -37,7 +40,8 @@ app.use((err: HttpError, req: Request, res: Response, next: NextFunction) => {
 
     /**
      * Whatever errors we return from the server to the client should always
-     * be in the same format throughout the application. Client doesn't have to * worry to write custom logic for every error that comes from the server.
+     * be in the same format throughout the application. Client doesn't have to
+     * worry to write custom logic for every error that comes from the server.
      */
 
     /**

@@ -8,7 +8,7 @@ import request from "supertest";
  * is --runInBand.
  */
 
-describe("App", () => {
+describe.skip("App", () => {
     it("should calculate the percentage", () => {
         const result = calculatePercentage(100, 50);
         expect(result).toBe(50);

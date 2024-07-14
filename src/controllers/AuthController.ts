@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 // We are using the class syntax to create a controller here but function could also have been used, because in class we can group things together in a better way that's why we are preferring it over function
 export class AuthController {
     register(req: Request, res: Response) {
-        res.status(201).send("User registered successfully!");
+        res.status(201).json("User registered successfully!");
     }
 }
 

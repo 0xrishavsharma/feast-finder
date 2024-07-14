@@ -29,6 +29,25 @@ describe("POST /auth/register", () => {
             // 3. Assert - Checking if we are getting the expected output or not
             expect(res.status).toBe(201);
         });
+
+        it("should return valid json response", async () => {
+            // 1. Arrange
+            const userData = {
+                userFirstName: "John",
+                userLastName: "Doe",
+                userEmail: "john.doe@mail.com",
+            };
+            // 2. Act
+            const res = await request(app)
+                .post("/auth/register")
+                .send(userData);
+            // 3. Assert
+            expect(res.headers["content-type"]).toEqual(
+                expect.stringContaining("json"),
+            );
+        });
+
+        it("should persist user data in the db", async () => {});
     });
 
     // Sad path

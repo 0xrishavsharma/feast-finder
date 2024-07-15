@@ -1,9 +1,28 @@
-import "dotenv/config";
-import { cleanEnv, str } from "envalid";
+/* eslint-disable no-console */
+
+import { config as dotenvConfig } from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
+// import "dotenv/config";
+import { cleanEnv, num, str } from "envalid";
+
+const __dirnameConfig = path.dirname(fileURLToPath(import.meta.url));
+
+dotenvConfig({
+    path: path.join(__dirnameConfig, `../../.env.${process.env.NODE_ENV}`),
+});
+
+console.log("Port checking", process.env.PORT);
+console.log("Node environment checking", process.env.NODE_ENV);
 
 const env = cleanEnv(process.env, {
-    PORT: str(),
-    NODE_ENV: str(),
+    PORT: num(),
+    NODE_ENV: str({ choices: ["development", "test", "production"] }),
+    DB_HOST: str(),
+    DB_PORT: num(),
+    DB_USERNAME: str(),
+    DB_PASSWORD: str(),
+    DB_NAME: str(),
 });
 
 export default env;

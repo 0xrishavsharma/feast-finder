@@ -2,6 +2,7 @@
  * This module creates the instance of the application.
  * The actual server logic is contained within the server.ts file.
  */
+import "reflect-metadata";
 import express, { NextFunction, Request, Response } from "express";
 import logger from "./config/logger";
 import { HttpError } from "http-errors";

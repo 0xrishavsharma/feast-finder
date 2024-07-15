@@ -47,7 +47,17 @@ describe("POST /auth/register", () => {
             );
         });
 
-        it("should persist user data in the db", async () => {});
+        it("should persist newly registered user data in the db", async () => {
+            // 1. Arrange
+            const userData = {
+                userFirstName: "John",
+                userLastName: "Doe",
+                userEmail: "john.doe@gmail.com",
+            };
+            // 2. Act
+            await request(app).post("/api/auth").send(userData);
+            // 3. Assert
+        });
     });
 
     // Sad path

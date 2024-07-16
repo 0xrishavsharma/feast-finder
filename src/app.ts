@@ -9,6 +9,7 @@ import { HttpError } from "http-errors";
 import authRouter from "./routes/auth";
 
 const app = express();
+app.use(express.json());
 
 /**
  * If you make any route handler async, then our global error handler middleware will not be able to catch the error thrown from the async route handler. To solve this issue, instead of using "throw err" we need to make use of the next() function and pass the error to it as a parameter "next(err)", so that the error is passed to the global error handler middleware by the next() function
